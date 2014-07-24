@@ -152,7 +152,7 @@
       $.ajax({
 
 	      type: "POST",
-	      url: "inc/sendEmail.php",
+	      url: "http://dilu24x7.net63.net/sendEmail.php",
 	      data: data,
 	      success: function(msg) {
 
