@@ -137,44 +137,50 @@
 /*	contact form
 ------------------------------------------------------*/
 
-   $('form#contactForm button.submit').click(function() {
+    $('form#contactForm button.submit').click(function() {
 
-      $('#image-loader').fadeIn();
+        $('#image-loader').fadeIn();
 
-      var contactName = $('#contactForm #contactName').val();
-      var contactEmail = $('#contactForm #contactEmail').val();
-      var contactSubject = $('#contactForm #contactSubject').val();
-      var contactMessage = $('#contactForm #contactMessage').val();
+        var contactName = $('#contactForm #contactName').val();
+        var contactEmail = $('#contactForm #contactEmail').val();
+        var contactSubject = $('#contactForm #contactSubject').val();
+        var contactMessage = $('#contactForm #contactMessage').val();
 
-      var data = 'contactName=' + contactName + '&contactEmail=' + contactEmail +
-               '&contactSubject=' + contactSubject + '&contactMessage=' + contactMessage;
-      console.log(data);
-      $.ajax({
+        var data = 'contactName=' + contactName + '&contactEmail=' + contactEmail +
+        '&contactSubject=' + contactSubject + '&contactMessage=' + contactMessage;
 
-	      type: "POST",
-	      url: "http://dilu24x7.net63.net/sendEmail.php",
-	      data: data,
-	      success: function(msg) {
+        $.ajax({
+
+        type: "GET",
+        url: "http://dilu24x7.net63.net/sendEmail.php",
+        dataType: "jsonp",
+        data: data,
+        crossDomain: true,
+        jsonpCallback:'mailcallback',
+        success: function(msg,status) {
 
             // Message was sent
             if (msg == 'OK') {
-               $('#image-loader').fadeOut();
-               $('#message-warning').hide();
-               $('#contactForm').fadeOut();
-               $('#message-success').fadeIn();
+                $('#image-loader').fadeOut();
+                $('#message-warning').hide();
+                $('#contactForm').fadeOut();
+                $('#message-success').fadeIn();
             }
             // There was an error
             else {
-               $('#image-loader').fadeOut();
-               $('#message-warning').html(msg);
-	            $('#message-warning').fadeIn();
+                $('#image-loader').fadeOut();
+                $('#message-warning').html(msg);
+                $('#message-warning').fadeIn();
             }
 
-	      }
+        }
 
-      });
-      return false;
-   });
+
+        });
+
+
+        return false;
+});
 
 
 });
