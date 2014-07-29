@@ -158,7 +158,6 @@
         crossDomain: true,
         jsonpCallback:'mailcallback',
         success: function(msg,status) {
-            console.log("success",msg);
 
             // Message was sent
             if (msg == 'OK') {
